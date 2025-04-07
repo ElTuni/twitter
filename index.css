@@ -1,0 +1,66 @@
+body, html{
+    font-family: "Source Sans 3", sans-serif;
+}
+
+
+.container {
+    width: 300px;
+    margin: auto;
+}
+
+.icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.tweetBtn, .username {
+    font-weight: 800;
+}
+
+.tweetBtn {
+    margin-top: 20px;
+    color: whitesmoke;
+    font-weight: 800;
+    background-color: rgb(78, 175, 255);
+    border: none;
+    width: 100%;
+    padding: 10px;
+    border-radius: 50px;
+}
+
+/* where you write the tweet */
+.tweetingSection textarea {
+    border: none;
+    font-family: inherit;
+    font-size: 15px;
+    resize: none;
+    width: 240px;
+}
+
+
+.feed, .socialBtns {
+    display: flex;
+}
+
+.feed {
+    margin: 10px;
+}
+
+.allTweetTxt {
+    margin-left: 10px;
+}
+
+.username {
+    font-size: 12px;
+    margin: 0;
+}
+
+.message {
+    margin: 8px 0;
+}
+
+.socialBtns {
+    justify-content: space-between;
+    margin-right: 10px;
+}
