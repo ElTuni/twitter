@@ -125,12 +125,12 @@ function render (){
                             <button class="comments" data-type="comment" data-uuid=${reply.uuid}>
                                 <i class="fa-regular fa-comment" data-type="comment" data-uuid=${reply.uuid}></i> 0
                             </button>
-                            <button class="likes" data-type="like" data-uuid=${reply.uuid}>
-                                <i class="fa-solid fa-heart ${isLikedcolorreply}" data-type="like" data-uuid=${reply.uuid}></i> ${reply.likes}
-                            </button>
                             <button class="retweets" data-type="retweet" data-uuid=${reply.uuid}>
                                 <i class="fa-solid fa-retweet ${isRetweetedcolorreply}" data-type="retweet" data-uuid=${reply.uuid}></i>
                                 ${reply.retweets}
+                            </button>
+                            <button class="likes" data-type="like" data-uuid=${reply.uuid}>
+                                <i class="fa-solid fa-heart ${isLikedcolorreply}" data-type="like" data-uuid=${reply.uuid}></i> ${reply.likes}
                             </button>
                         </div>
                     </div>
@@ -150,13 +150,13 @@ function render (){
                         <i class="fa-regular fa-comment ${visibilitycolor}" data-type="comment" data-uuid=${tweet.uuid}></i>
                         ${tweet.replies.length}
                     </button>
-                    <button class="likes" data-type="like" data-uuid=${tweet.uuid}>
-                        <i class="fa-solid fa-heart ${isLikedcolor}" data-type="like" data-uuid=${tweet.uuid}></i>
-                        ${tweet.likes}
-                    </button>
                     <button class="retweets" data-type="retweet" data-uuid=${tweet.uuid}>
                         <i class="fa-solid fa-retweet ${isRetweetedcolor}" data-type="retweet" data-uuid=${tweet.uuid}></i>
                         ${tweet.retweets}
+                    </button>
+                    <button class="likes" data-type="like" data-uuid=${tweet.uuid}>
+                        <i class="fa-solid fa-heart ${isLikedcolor}" data-type="like" data-uuid=${tweet.uuid}></i>
+                        ${tweet.likes}
                     </button>
                     <button class="deletes" data-type="delete" data-uuid=${tweet.uuid}>
                         <i class="fa-solid fa-trash" data-type="delete" data-uuid=${tweet.uuid}></i>
