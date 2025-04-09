@@ -132,9 +132,6 @@ function render (){
                                 <i class="fa-solid fa-retweet ${isRetweetedcolorreply}" data-type="retweet" data-uuid=${reply.uuid}></i>
                                 ${reply.retweets}
                             </button>
-                            <button class="deletes" data-type="delete" data-uuid=${tweet.uuid}>
-                                <i class="fa-solid fa-trash" data-type="delete" data-uuid=${tweet.uuid}></i>
-                            </button>
                         </div>
                     </div>
                 </div>`
