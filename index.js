@@ -1,5 +1,12 @@
-import {tweetsData} from "/data.js"
+import {tweetsDataDF} from "/data.js"
 import { v4 as uuidv4 } from 'https://jspm.dev/uuid'
+
+let tweetsData = JSON.parse(localStorage.getItem("user"))
+if (!tweetsData){
+    tweetsData = localStorage.setItem("user", JSON.stringify(tweetsDataDF))
+    tweetsData = JSON.parse(localStorage.getItem("user"))
+}
+
 
 const feedEl = document.getElementById("feed")
 const randomname = `@anonymous` + Math.floor(Math.random()*1000)
@@ -41,11 +48,11 @@ document.addEventListener("click", function(e){
             render()
         } else if (e.target.dataset.type === "comment") {
             let clickedTweet = tweetsData.filter((tweet) => tweet.uuid === e.target.dataset.uuid)[0]
-            if (clickedTweet)
+            if (clickedTweet){
                 clickedTweet.areRepliesVisible = !clickedTweet.areRepliesVisible
-                render()
+                render()}
         } else if (e.target.dataset.type === "delete") {
-            let index =  -1
+            let index = -1
             tweetsData.forEach(element => {
                 index++
                 if (element.uuid === e.target.dataset.uuid){
@@ -53,27 +60,24 @@ document.addEventListener("click", function(e){
                 }
             }) 
             render()
+        } else if (e.target.dataset.type === "reset") {
+            localStorage.removeItem("user")
+            tweetsData = localStorage.setItem("user", JSON.stringify(tweetsDataDF))
+            tweetsData = JSON.parse(localStorage.getItem("user"))
+            render()
         }
     }
     if (e.target.classList.value === "tweetBtn" && document.getElementById("tweetingplace").value.replace(/\s+/g, '')) {
-        const newTweet = {
-        handle: randomname,
-        profilePic: `images/Twitter_default_profile_400x400.png`,
-        likes: 0,
-        retweets: 0,
-        tweetText: document.getElementById("tweetingplace").value,
-        replies: [],
-        isLiked: false,
-        isRetweeted: false,
-        areRepliesVisible: false,
-        uuid: uuidv4()}
-        document.getElementById("tweetingplace").value = ""
-        
-        tweetsData.unshift(newTweet)
-        render()
-    }
+        commentSending ()
+        }
 })
 
+document.addEventListener("keyup", function(event){
+    event.preventDefault()
+    if(event.keyCode === 13 && document.getElementById("tweetingplace").value.replace(/\s+/g, '')){
+        commentSending()
+    }
+})
 
 function render (){
     let html = ``
@@ -167,11 +171,29 @@ function render (){
             ${comments}
         </div>`
 
-
+    tweetsData = localStorage.setItem("user", JSON.stringify(tweetsData))
+    tweetsData = JSON.parse(localStorage.getItem("user"))
             
     })
     feedEl.innerHTML = html
 
 }
+
+function commentSending (){
+    const newTweet = {
+    handle: randomname,
+    profilePic: `images/Twitter_default_profile_400x400.png`,
+    likes: 0,
+    retweets: 0,
+    tweetText: document.getElementById("tweetingplace").value,
+    replies: [],
+    isLiked: false,
+    isRetweeted: false,
+    areRepliesVisible: false,
+    uuid: uuidv4()}
+    document.getElementById("tweetingplace").value = ""
+    
+    tweetsData.unshift(newTweet)
+    render()}
 
 render()
